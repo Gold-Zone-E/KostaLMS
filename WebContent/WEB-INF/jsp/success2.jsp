@@ -8,7 +8,7 @@
 </head>
 <body>
 	${imgName}<a href="upform.kosta">입력해보기</a>
-	<img src="<%= application.getContextPath() %>/img/${imgName}"><br/>
-	<img src="${pageContext.request.contextPath }/img/${imgName}">
+<%-- 	<img src="<%= application.getContextPath() %>/img/${imgName}"><br/> --%>
+<%-- 	<img src="${pageContext.request.contextPath }/img/${imgName}"> --%>
 </body>
 </html>
