@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<context:annotation-config />
+	<!-- <bean id="helloController" class="ex2.controller.HelloController"/> -->
+	<!-- multipartResolver : CommonsMultipartResolver를 등록해서 파일업로드 처리에 대한 View 
+		서비스를 응답하게 한다. -->
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+
+	<!-- 모델을 거치지 않고 바로 view로 이동하기 -->
+	<bean name="/form.kosta"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="form"></bean>
+
+	<bean name="/upform.kosta"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="upform"></bean>
+
+	<bean id="insertController" class="controller.HomePageController"></bean>
+	<!-- <bean id="saveController" class="ex1.TBoardController"></bean> -->
+	<!-- <bean id="upsaveController" class="ex1.UpSaveController"></bean> -->
+
+
+	<!-- declare beans -->
+	<bean id="userDao" class="dao.UserDaoImpl" />
+	<bean id="userService" class="services.UserServiceImpl" />
+
+	<!-- declare datasource bean -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/myora" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+
+
+	<!-- targetObject -->
+	<!-- <bean id="dao" class="dao.DaoServiceImple" /> -->
+
+
+</beans>
